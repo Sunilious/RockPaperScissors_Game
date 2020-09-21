@@ -8,9 +8,48 @@
     
     
   <script>
-   
     // Your JavaScript goes here!
-  
+    let rock = "Rock";
+    let paper = "Paper";
+    let scissors = "Scissors";
+    let cpuAnswer = "";
+    let answer = prompt("Let's play Rock Paper Scissors! Please enter your answer :" );
+
+
+   if(answer.toLowerCase()=== rock.toLowerCase()){
+
+    console.log("rock GANG");
+
+   }else if (answer.toLowerCase()=== paper.toLowerCase()) {
+
+    console.log("PAPER GANG");
+
+   }else if (answer.toLowerCase()=== scissors.toLowerCase()) {
+
+     console.log("SCISSORS GANG");
+
+   }else {
+     console.log("Please enter Rock, Paper or Scissors :)");
+   }
+
+
+
+  function computerPlay(cpuAnswer) {
+      if (Math.floor(Math.random() * 3) + 1 === 1 ){
+        return "Rock";
+      }else if (Math.floor(Math.random() * 3) + 1 === 2 ) {
+        return "Paper";
+      }else {
+        return "Scissors";
+      }
+      console.log(cpuAnswer);
+  }
+  function rpsRound(playerSelection,computerSelection) {
+      let playerSelection = answer;
+      let computerSelection = cpuAnswer;
+
+  }
+  console.log(computerPlay());
   </script>
 </body>
 </html>
