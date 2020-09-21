@@ -8,48 +8,86 @@
     
     
   <script>
-    // Your JavaScript goes here!
-    let rock = "Rock";
-    let paper = "Paper";
-    let scissors = "Scissors";
-    let cpuAnswer = "";
-    let answer = prompt("Let's play Rock Paper Scissors! Please enter your answer :" );
+    //the options for the rps game
+    let options = ["rock", "paper", "scissors"];
+    //variables to count the wins and loses and ties
+    let win,
+        lose,
+        tie = 0;
+// gets the computers pick for the game
+    function computerPlay(picks) {
+        let computerOption = Math.floor(Math.random() * picks.length);
+      return picks[computerOption];
+    }
 
+  // gets the players answer for the game, uses tolocalelowercase to match it up with the options so that it is not case sensitive
+  function playerMovement() {
+    let playersAnswer = prompt("Welcome to Rock, Paper, Scissors! please pick your answer");
 
-   if(answer.toLowerCase()=== rock.toLowerCase()){
+    playersAnswer = playersAnswer.toLocaleLowerCase();
 
-    console.log("rock GANG");
-
-   }else if (answer.toLowerCase()=== paper.toLowerCase()) {
-
-    console.log("PAPER GANG");
-
-   }else if (answer.toLowerCase()=== scissors.toLowerCase()) {
-
-     console.log("SCISSORS GANG");
-
-   }else {
-     console.log("Please enter Rock, Paper or Scissors :)");
-   }
-
-
-
-  function computerPlay(cpuAnswer) {
-      if (Math.floor(Math.random() * 3) + 1 === 1 ){
-        return "Rock";
-      }else if (Math.floor(Math.random() * 3) + 1 === 2 ) {
-        return "Paper";
-      }else {
-        return "Scissors";
-      }
-      console.log(cpuAnswer);
+  // returns an error message if they enter an invalid response
+  if (!options.includes(playersAnswer)) {
+    console.log("Please write a valid response between rock, paper and scissors");
   }
+  return playersAnswer;
+}
+//checks to see if the player or computer wins, also calculates the ties,wins and losses
   function rpsRound(playerSelection,computerSelection) {
-      let playerSelection = answer;
-      let computerSelection = cpuAnswer;
-
+   if(playerSelection===computerSelection){
+    tie += 1;
+    return "It's a tie";
+  } else {
+    switch (playerSelection) {
+      case "rock":
+        if (computerSelection === "scissors") {
+          win += 1;
+          return "You win! Rock beats Scissors";
+        } else {
+          lose += 1;
+          return "You lose! Paper beats Rock";
+        }
+        break;
+      case "paper":
+        if (computerSelection === "rock") {
+          win += 1;
+          return "You win! Paper beats Rock";
+        } else {
+          lose += 1;
+          return "You lose! Scissors beats Paper";
+        }
+        break;
+      case "scissors":
+        if (computerSelection === "paper") {
+          win += 1;
+          return "You win! Scissors beats Paper";
+        } else {
+          lose += 1;
+          return "You lose! Rock beats Scissors";
+        }
+        break;
+    }
   }
-  console.log(computerPlay());
+}
+   //the game function that calculates the rounds and outputs the wins and or losses at the end, also uses the other two functinos in the console.log
+function game() {
+  for (let rounds = 0; rounds < 5; rounds++) {
+    console.log(rpsRound(playerMovement(), computerPlay(options)));
+  }
+  if (win > lose && win > tie) {
+    alert("You are the winner");
+  } else if (lose > win && lose > tie) {
+    alert("You lost");
+  } else {
+    alert("It's a tie");
+  }
+}
+//calls the game function and runs the other two functions inside of it with the console.log
+game();
+    
+  
+  
+  
   </script>
 </body>
 </html>
