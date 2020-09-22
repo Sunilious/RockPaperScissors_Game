@@ -15,14 +15,14 @@
         lose,
         tie = 0;
 // gets the computers pick for the game
-    function computerPlay(picks) {
-        let computerOption = Math.floor(Math.random() * picks.length);
-      return picks[computerOption];
+    function computerPlay(option) {
+        let computerOption = Math.floor(Math.random() * option.length);
+      return option[computerOption];
     }
 
   // gets the players answer for the game, uses tolocalelowercase to match it up with the options so that it is not case sensitive
   function playerMovement() {
-    let playersAnswer = prompt("Welcome to Rock, Paper, Scissors! please pick your answer");
+    let playersAnswer = prompt("Welcome to Rock, Paper, Scissors! please type your answer!");
 
     playersAnswer = playersAnswer.toLocaleLowerCase();
 
